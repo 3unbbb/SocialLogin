@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mysql.cj.log.Log;
+
 /**
  * Handles requests for the application home page.
  */
@@ -35,5 +37,14 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@RequestMapping(value="/kakao", method = RequestMethod.GET)
+	public String kakao(Model model) {
+		
+		logger.info("oauth 호출");
+		
+		return "oauth";
+	}
+	
 	
 }
