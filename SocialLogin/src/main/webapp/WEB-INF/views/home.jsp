@@ -8,7 +8,7 @@
 <body>
 
 <div>
-	<a id="custom-login-btn" href="javascript:loginWithKakao()">
+	<a id="custom-login-btn" href="/kakaoUrl">
 		<img src="../resources/image/kakao_login.png" name="kakao">
 	</a>
 </div>
@@ -17,20 +17,7 @@
  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
  
 <script type="text/javascript">
-window.Kakao.init('a6d9405f4310c34a3488e64ffc7b21a1');
-
-
-  function loginWithKakao() {		
-	window.Kakao.Auth.authorize({
-		scope : 'profile_nickname, profile_image, account_email, gender, birthday', 
-		success : function(data){
-			console.log(data);
-		window.location.href='/kakao';
-		}
-	});
-  }
 	
-
 </script>
 
 

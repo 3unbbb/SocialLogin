@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.eunbi.service.MemberService;
 
@@ -20,15 +21,38 @@ public class MemberController {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	
-	@RequestMapping(value="/kakaoLogin", method=RequestMethod.GET)
+	@RequestMapping(value="/kakaoUrl", method=RequestMethod.GET)
 	public String Kakao(Model model, HttpSession session) {
 		
 		log.info("kakaoLogin 호출");
+		String redirect_uri = "http://localhost:8088/oauth";
+		String rest_api = "9c2d5efce4c881343385d90eb3e693e4";
+		String response_type="code";
 		
-		
-		return "redirect:/main.jsp";
+		return "redirect:https://kauth.kakao.com/oauth/authorize?client_id="+rest_api
+				+"&redirect_uri="+redirect_uri+"&response_type="+response_type;
 	}
 	
+	
+	@RequestMapping(value="/oauth", method=RequestMethod.GET)
+	public String kakaologin(@RequestParam(value="code", required=false) String code ) {
+		
+		log.info("code : "+code);
+		
+		String access_token = getToken(code);
+		
+		return "/oauth";
+	}
+	
+	public String getToken(String authorization_code) {
+		
+		String client_id="";
+		String redirect_uri="";
+		String code = authorization_code;
+		String url ="https://kauth.kakao.com/oauth/token";
+		
+		return "redirect:";
+	}
 	
 	
 }
