@@ -47,13 +47,8 @@ public class MemberController {
 		
 		
 		model.addAttribute("userInfo",service.getUserInfo(access_token));
-
-		
 		
 		return "/main";
-	
-	
-	
 	
 	}
 	
