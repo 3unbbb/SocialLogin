@@ -1,5 +1,7 @@
 package com.eunbi.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.eunbi.service.MemberService;
+import com.eunbi.service.OauthService;
 
 @Controller
 public class MemberController {
-
+	
 	@Autowired
-	private MemberService service;
+	private OauthService service;
 
 	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	
@@ -35,23 +38,23 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/oauth", method=RequestMethod.GET)
-	public String kakaologin(@RequestParam(value="code", required=false) String code ) {
+	public String kakaologin(@RequestParam(value="code", required=false) String code, Model model ) throws IOException {
 		
 		log.info("code : "+code);
 		
-		String access_token = getToken(code);
+		String access_token = service.getAccessToken(code);
+		log.info(access_token);
 		
-		return "/oauth";
-	}
+		
+		model.addAttribute("userInfo",service.getUserInfo(access_token));
+
+		
+		
+		return "/main";
 	
-	public String getToken(String authorization_code) {
-		
-		String client_id="";
-		String redirect_uri="";
-		String code = authorization_code;
-		String url ="https://kauth.kakao.com/oauth/token";
-		
-		return "redirect:";
+	
+	
+	
 	}
 	
 	

@@ -2,18 +2,20 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>Main</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
 <div>
-	<a id="custom-login-btn" href="/kakaoUrl">
-		<img src="../resources/image/kakao_login.png" name="kakao">
-	</a>
-</div>
 
-<!-- dd -->
+<h2> accessToken</h2>
+
+<input type="text" value="${userInfo.nickname }">
+<input type="text" value="${userInfo.birthday }">
+<input type="text" value="${userInfo.email }">
+
+</div>
 
 </body>
  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -21,6 +23,5 @@
 <script type="text/javascript">
 	
 </script>
-
 
 </html>
